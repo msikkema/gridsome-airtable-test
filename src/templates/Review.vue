@@ -5,7 +5,7 @@
     <h2>{{ $page.review.rating }} stars out of 5</h2>
 
     <p>by {{ $page.review.author }}</p>
-    <p>{{ $page.review.content }}</p>
+    <div v-html="getContentHtml($page.review.content)"></div>
   </Layout>
 </template>
 
@@ -24,7 +24,8 @@ query Review ($id: String!) {
 </page-query>
 
 <script>
-import Layout from "~/layouts/Default.vue";
+import Layout from "~/layouts/Default.vue"
+import * as markdownit from 'markdown-it'
 
 export default {
   components: {
@@ -34,6 +35,12 @@ export default {
     return {
       title: this.$page.review.title
     };
+  },
+  methods: {
+    getContentHtml (str) {
+      const md = new markdownit()
+      return md.render(str)
+    }
   }
 };
 </script>
