@@ -1,20 +1,24 @@
 <template>
   <Layout>
-    <h1>The Articles in the system are</h1>
+    <h1>Gridsome + Airtable Demo</h1>
 
     <h2>Movie Reviews</h2>
-    <ol>
-      <li v-for="edge in $page.allReview.edges" :key="edge.node.id">
-        <g-link :to="'/reviews/' + getSlug(edge.node.title)">{{ edge.node.title }}</g-link>
-      </li>    
-    </ol>
+    <p>Select a card below to read the full review</p>
+    <div class="card-container">
+      <ArticleCard
+        v-for="edge in $page.allReview.edges"
+        :key="edge.node.id"
+        :background-image="edge.node.heroImage[0].url"
+        :title="edge.node.title"
+        :url="`/reviews/${getSlug(edge.node.title)}`"
+        :author="edge.node.author"
+      />
+    </div>
 
     <h2>Blog Posts</h2>
-    <ol>
       <li v-for="edge in $page.allPost.edges" :key="edge.node.id">
         <g-link :to="'/posts/' + getSlug(edge.node.title)">{{ edge.node.title }}</g-link>
-      </li>    
-    </ol>
+      </li>
   </Layout>
 </template>
 
@@ -25,6 +29,9 @@ query getTitles {
       node {
         id
         title
+        heroImage {
+          url
+        }
       }
     }
   }
@@ -40,12 +47,14 @@ query getTitles {
 </page-query>
 
 <script>
-import Layout from '~/layouts/Default.vue'
 import slugify from 'slugify'
+import Layout from '~/layouts/Default'
+import ArticleCard from '~/components/ArticleCard'
 
 export default {
   components: {
-    Layout
+    Layout,
+    ArticleCard
   },
   methods: {
     getSlug (str) {
@@ -53,5 +62,15 @@ export default {
     }
   }
 };
-
 </script>
+
+<style lang="scss">
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  >div {
+    margin: 0 5px 5px 0;
+  }
+}
+</style>

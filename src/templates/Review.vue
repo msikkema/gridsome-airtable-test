@@ -1,6 +1,10 @@
 <template>
-  <Layout :title="$page.review.title">
+  <Layout :showHome="true">
     <h1>{{ $page.review.title }}</h1>
+    <img class="hero-image" :src="$page.review.heroImage[0].url" />
+    <h2>{{ $page.review.rating }} stars out of 5</h2>
+
+    <p>by {{ $page.review.author }}</p>
     <p>{{ $page.review.content }}</p>
   </Layout>
 </template>
@@ -10,6 +14,11 @@ query Review ($id: String!) {
   review (id: $id) {
     title
     content
+    author
+    rating
+    heroImage {
+      url
+    }
   }
 }
 </page-query>
@@ -28,3 +37,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+img.hero-image {
+  max-height: 300px;
+}
+</style>
