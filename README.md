@@ -9,5 +9,7 @@ This is a quick project to test how difficult it is to generate a static site fr
 
 ### 3. visit localhost:8080
 
+You can also visit `http://localhost:8080/___explore` to play with the interactive GraphQL playground
+
 
 
