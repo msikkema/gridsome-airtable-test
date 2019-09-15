@@ -1,11 +1,12 @@
 <template>
   <Layout :showHome="true">
-    <h1>{{ $page.review.title }}</h1>
-    <img class="hero-image" :src="$page.review.heroImage[0].url" />
+    <div class="hero-panel" :style="heroPanelBackground($page.review.heroImage[0].url)">
+      <div class="hero-label">{{ $page.review.title }}</div>
+    </div>
     <h2>{{ $page.review.rating }} stars out of 5</h2>
 
     <p>by {{ $page.review.author }}</p>
-    <div v-html="getContentHtml($page.review.content)"></div>
+    <div class="content-body" v-html="getContentHtml($page.review.content)"></div>
   </Layout>
 </template>
 
@@ -16,6 +17,7 @@ query Review ($id: String!) {
     content
     author
     rating
+    date
     heroImage {
       url
     }
@@ -40,13 +42,40 @@ export default {
     getContentHtml (str) {
       const md = new markdownit()
       return md.render(str)
+    },
+    heroPanelBackground(url) {
+      return `background-image: url(${url})`
     }
-  }
+  },
 };
 </script>
 
 <style lang="scss">
 img.hero-image {
   max-height: 300px;
+}
+.content-body {
+  background-color: #E6F1FA;
+  color: #333;
+  padding: 25px;
+  font-size: 16px;
+  margin-bottom: 55px;
+}
+.hero-panel {
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 15px;
+
+  .hero-label {
+    background-color: #FFEF5E;
+    padding: 10px;
+    color: #333;
+    font-size: 30px;
+  }
 }
 </style>

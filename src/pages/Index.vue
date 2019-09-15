@@ -2,7 +2,7 @@
   <Layout>
     <h1>Gridsome + Airtable Demo</h1>
 
-    <h2>Movie Reviews</h2>
+    <h2>Movie Reviews (from rogerebert.com)</h2>
     <p>Select a card below to read the full review</p>
     <div class="card-container">
       <ArticleCard

@@ -29,6 +29,7 @@ export default {
     border-bottom: 2px solid white;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 
     .logo-container {
       display: flex;

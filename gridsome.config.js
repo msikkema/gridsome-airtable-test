@@ -7,7 +7,7 @@
 const airtableDetails = { apiKey: 'keyGtrdAlWXdPnI5f', baseId: 'appNbWzwFrqWJHyV4' }
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'Gridsome + Airtable Test',
   plugins: [
     {
       use: '@gridsome/source-airtable',
