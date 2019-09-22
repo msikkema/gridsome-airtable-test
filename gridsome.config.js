@@ -4,7 +4,7 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-const airtableDetails = { apiKey: 'keyGtrdAlWXdPnI5f', baseId: 'appNbWzwFrqWJHyV4' }
+const airtableDetails = { apiKey: 'xxx', baseId: 'xxx' } // Ask me for the key and baseid
 
 module.exports = {
   siteName: 'Gridsome + Airtable Test',
